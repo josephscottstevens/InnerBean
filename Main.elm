@@ -11,8 +11,6 @@ import Style.Font as Font
 import Style.Transition as Transition
 
 
-{-| 1 => 2 == (1, 2)
--}
 (=>) =
     (,)
 
