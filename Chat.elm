@@ -24,23 +24,22 @@ stylesheet : Style.StyleSheet Styles variation
 stylesheet =
     Style.styleSheet
         [ style None []
-        , style Navbar
+        , style Main
             [ Color.background Color.white
             , Color.text colors.outOfFocus
             , Font.typeface
-                [ Font.importUrl { url = "https://fonts.googleapis.com/css", name = "Montserrat" }
+                [ Font.importUrl { url = "https://fonts.googleapis.com/css?family=Montserrat", name = "Montserrat" }
                 ]
             , Font.typeface [ Font.font "Montserrat" ]
             , Font.size 16
             ]
-        , style Main
-            []
+        , style Navbar []
         ]
 
 
 main =
     Element.viewport stylesheet <|
-        Element.column Navbar
+        Element.column Main
             [ Attributes.width Attributes.fill ]
             [ Element.row None
                 [ Attributes.spacing 20, Attributes.center, Attributes.padding 20 ]
@@ -58,7 +57,11 @@ main =
                 ]
             , Element.row None
                 []
-                [ Element.image None [ Attributes.width (Attributes.percent 100), Attributes.maxHeight (Attributes.px 520) ] connectImage
+                [ Element.image None
+                    [ Attributes.width (Attributes.percent 100)
+                    , Attributes.maxHeight (Attributes.px 520)
+                    ]
+                    connectImage
                 ]
             ]
 
