@@ -10,7 +10,7 @@ import Style.Font as Font
 
 type Styles
     = None
-    | Main
+    | MainHeader
     | TextHeader
 
 
@@ -25,7 +25,7 @@ stylesheet : Style.StyleSheet Styles variation
 stylesheet =
     Style.styleSheet
         [ style None []
-        , style Main
+        , style MainHeader
             [ Color.background Color.white
             , Color.text colors.outOfFocus
             , Font.typeface [ Font.importUrl { url = "https://fonts.googleapis.com/css?family=Montserrat", name = "Montserrat" } ]
@@ -42,7 +42,7 @@ stylesheet =
 
 main =
     Element.viewport stylesheet <|
-        Element.column Main
+        Element.column MainHeader
             [ Attributes.width Attributes.fill ]
             [ Element.row None
                 [ Attributes.spacing 20, Attributes.center, Attributes.padding 20 ]
@@ -67,11 +67,19 @@ main =
                     { src = "Organized-Fashion.jpg", caption = "CONNECT" }
                 ]
             , Element.row None
-                [ Attributes.center
-                , Attributes.minWidth (Attributes.px 1000)
-                ]
-                [ Element.row TextHeader [] [ Element.text "HOURS" ]
-                , Element.row None [] [ Element.text "Mon-Sat: 8am-3pm (breakfast until 10:30am)" ]
-                , Element.row None [] [ Element.text "Sunday:     Closed" ]
+                []
+                [ Element.column None [ Attributes.width <| Attributes.fillPortion 1 ] []
+                , Element.column None
+                    [ Attributes.minWidth (Attributes.px 1000)
+                    , Attributes.width <| Attributes.fillPortion 4
+                    ]
+                    [ Element.row None
+                        []
+                        [ Element.row TextHeader [] [ Element.text "HOURS" ]
+                        , Element.row None [] [ Element.text "Mon-Sat: 8am-3pm (breakfast until 10:30am)" ]
+                        , Element.row None [] [ Element.text "Sunday:     Closed" ]
+                        ]
+                    ]
+                , Element.column None [ Attributes.width <| Attributes.fillPortion 1 ] []
                 ]
             ]
